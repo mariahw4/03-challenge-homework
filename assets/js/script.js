@@ -6,7 +6,7 @@
 // WHEN prompted for the length of the password
 // THEN I choose a length of at least 8 characters and no more than 128 characters
 // WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include alphaLower, alphaUpper, numeric, and/or special characters
+// THEN I confirm whether or not to include lower case lettter, upper case letter, numeric, and/or special characters
 // WHEN I answer each prompt
 // THEN my input should be validated and at least one character type should be selected
 // WHEN all prompts are answered
@@ -19,10 +19,10 @@
 var generateBtn = document.querySelector("#generate");
 
 // arrays
-var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var numberList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialChar = ["!", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?","~"];
-var alphaLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var alphaUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var letterLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var letterUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 var passwordLength;
 var confirmLower;
@@ -57,78 +57,80 @@ function generatePassword () {
     passwordLength = prompt("You must choose a number between 8 and 128");
     console.log ("Password length " + passwordLength);
   }
+
   // prompting for other characters
-  else { 
-    confirmLower = confirm("Will this contain lower case letters?");
+  confirmLower = confirm("Will this contain lower case letters?");
     console.log("Lower case " + confirmLower);
-    confirmUpper = confirm("Will this contain upper case letters?");
+  confirmUpper = confirm("Will this contain upper case letters?");
     console.log("Upper case " + confirmUpper);
-    confirmNumber = confirm("Will this contain numbers?");
+  confirmNumber = confirm("Will this contain numbers?");
     console.log("Number " + confirmNumber);
-    confirmSpecial = confirm("Will this contain special characters?");
+  confirmSpecial = confirm("Will this contain special characters?");
     console.log("Special Character " + confirmSpecial);
-  };
+
 // If, No answer - then
 if (!confirmLower && !confirmUpper && !confirmNumber && !confirmSpecial) {
-  userChoices = alert("You must choose a criteria");
+  userChoices = alert("You must choose a criteria - please try again");
+  return
+}
 // 4 true options
-} else if (confirmLower && confirmUpper && confirmNumber && confirmSpecial) {
-  userChoices = alphaLower.concat(alphaUpper, number, specialChar);
+ else if (confirmLower && confirmUpper && confirmNumber && confirmSpecial) {
+  userChoices = letterLower.concat(letterUpper, numberList, specialChar);
   console.log(userChoices);
 }
 // 3 true options
 else if (confirmLower && confirmUpper && confirmNumber) {
-  userChoices = alphaLower.concat(alphaUpper, number);
+  userChoices = letterLower.concat(letterUpper, numberList);
   console.log(userChoices);
 }
 else if (confirmLower && confirmUpper && confirmSpecial) {
-  userChoices = alphaLower.concat(alphaUpper, specialChar);
+  userChoices = letterLower.concat(letterUpper, specialChar);
   console.log(userChoices);
 }
 else if (confirmLower && confirmNumber && confirmSpecial) {
-  userChoices = alphaLower.concat(number, specialChar);
+  userChoices = letterLower.concat(numberList, specialChar);
   console.log(userChoices);
 }
 else if (confirmUpper && confirmNumber && confirmSpecial) {
-  userChoices = alphaUpper.concat(number, specialChar);
+  userChoices = letterUpper.concat(numberList, specialChar);
   console.log(userChoices);
 }
 // 2 true options
 else if (confirmLower && confirmUpper) {
-  userChoices = alphaLower.concat(alphaUpper);
+  userChoices = letterLower.concat(letterUpper);
   console.log(userChoices);
 }
 else if (confirmLower && confirmNumber) {
-  userChoices = alphaLower.concat(number);
+  userChoices = letterLower.concat(numberList);
   console.log(userChoices);
 }
 else if (confirmLower && confirmSpecial) {
-  userChoices = alphaLower.concat(specialChar);
+  userChoices = letterLower.concat(specialChar);
   console.log(userChoices);
 }
 else if (confirmUpper && confirmNumber) {
-  userChoices = alphaUpper.concat(number);
+  userChoices = letterUpper.concat(numberList);
   console.log(userChoices);
 }
 else if (confirmUpper && confirmSpecial) {
-  userChoices = alphaUpper.concat(special);
+  userChoices = letterUpper.concat(specialChar);
   console.log(userChoices);
 }
 else if (confirmNumber && confirmSpecial) {
-  userChoices = number.concat(specialChar);
+  userChoices = numberList.concat(specialChar);
   console.log(userChoices);
 }
 // 1 true option
 else if (confirmLower) {
-  userChoices = alphaLower;
+  userChoices = letterLower;
   console.log(userChoices);
 }
 else if (confirmUpper) {
-  userChoices = blankUpper.concat(alphaUpper);
+  userChoices = letterUpper;
   console.log(userChoices);
 }
 else if (confirmNumber) {
-  userChoices = number;
+  userChoices = numberList;
   console.log(userChoices);
 }
 else if (confirmSpecial) {
@@ -150,7 +152,6 @@ for (var i = 0; i < passwordLength; i++) {
 var password = passwordBlank.join("");
 console.log("Your Pasword is: " + password);
 return password;
-
 
 }
 
