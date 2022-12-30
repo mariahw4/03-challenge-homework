@@ -39,7 +39,10 @@ function generatePassword () {
     passwordLength = prompt("You must choose a number between 8 and 128");
     console.log ("Password length " + passwordLength);
   }
-
+  if (passwordLength <8 || passwordLength >128) {
+    alert("Must choose a number betweeen 8 and 128");
+    return alert("Click Generate Password to enter value")
+  }
   // asking user for desire for specific character types
     confirmNumber = confirm("Include numbers in password? Ok for yes, cancel for no.");
       console.log("Number " + confirmNumber);
