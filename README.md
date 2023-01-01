@@ -35,7 +35,7 @@ The following gif shows the web application's appearance and functionality:
 
 ![animation](./assets/images/password-generator.gif)
 
-deployed project: https://mariahw4.github.io/03-challenge-hw-javascript-password-generator/
+deployed project: https://mariahw4.github.io/03-javascript-password-generator/
 
 
 
